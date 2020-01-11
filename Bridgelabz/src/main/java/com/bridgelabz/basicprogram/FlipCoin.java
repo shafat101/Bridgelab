@@ -1,3 +1,11 @@
+/*******************************************************************************************************
+ * purpose : To take  User Input n and flips the coin n times and logs percentage of heads and tails” ** 
+ *                                                                                                    **
+ * @author SHAFAT BASHIR                                                                              ** 
+ * @version 1.0                                                                                       **
+ * @since 11/01/2020                                                                                  **
+ * *****************************************************************************************************
+ */
 package com.bridgelabz.basicprogram;
 
 import java.util.logging.Level;
