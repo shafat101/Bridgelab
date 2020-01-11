@@ -1,3 +1,11 @@
+/*****************************************************
+ * purpose : validates and returns logical part     **
+ *                                                  **                                                                  **   
+ * @author SHAFAT BASHIR                            **                                                                     **
+ * @version 1.0                                     **                                                                     **
+ * @since 11/01/2020                                **                                                                     **
+ * ***************************************************        
+ */
 package com.bridgelabz.util;
 
 import java.util.Scanner;

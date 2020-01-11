@@ -1,3 +1,11 @@
+/***********************************************************************************
+ * purpose :  takes a command-line argument Year and prints is leap year or not   **
+ *                                                                                **   
+ * @author SHAFAT BASHIR                                                          **
+ * @version 1.0                                                                   **
+ * @since 10/01/2020                                                              **
+ * *********************************************************************************        
+ */
 package com.bridgelabz.basicprogram;
 
 import java.util.logging.Level;

@@ -1,3 +1,11 @@
+/****************************************************************************
+ * purpose :  takes a command-line argument N and prints Harmonic number N **
+ *                                                                         **   
+ * @author SHAFAT BASHIR                                                   **
+ * @version 1.0                                                            **
+ * @since 11/01/2020                                                       **
+ * **************************************************************************   
+ */
 package com.bridgelabz.basicprogram;
 
 import com.bridgelabz.util.Utility;
