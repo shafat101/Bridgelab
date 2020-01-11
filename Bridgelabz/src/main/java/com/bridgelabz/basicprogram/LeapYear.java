@@ -1,26 +1,28 @@
 package com.bridgelabz.basicprogram;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import com.bridgelabz.util.Utility;
+
 public class LeapYear {
 
 	public static void main(String[] args) {
-		int year = 2020;
-		boolean flag = false;
-		if (year % 400 == 0) {
-			flag = true;
-		}else if(year % 100 == 0) {
-			flag = false;
-		}else if (year % 4 == 0) {
-			flag = true;
-		}else {
-			flag = false;
+		
+		String returnyear =  Utility.scannerString();
+		int year;
+		Logger logger = Logger.getLogger(LeapYear.class.getName());
+		if (returnyear.length() > 3 && returnyear.length() < 5 ) {
+			year = Integer.parseInt(returnyear);
+			if(Utility.leapOrNot(year)) {
+				logger.log(Level.INFO, "Year is a Leap Year : ");
+			}else {
+				logger.log(Level.INFO, "Year is Not a Leap Year : ");
+			}
 		}
-		if (flag) {
-			System.out.println(year +" is a Leap year");
-		}else {
-			System.out.println(year +" is Not a Leap year");
-		}
-
-
+		
+		
 	}
 
 }
+
