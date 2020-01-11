@@ -148,6 +148,27 @@ public class Utility {
 			Utility.output(Utility.StringOf(arr.get(i)));
 		}
     }
+    
+    /*A program with cubic running time. 
+     * Read in N integers and counts the 
+     * number of triples that sum to exactly 0.
+     * prints the distinct triplets.
+     */
+    
+    public static void nOfTriples(int[] n) {
+    	int count = 0;
+        for(int i = 0;i < n.length;i++ ) {
+       	 for(int j = 0;i < n.length ;i++) {
+       		 for(int k = 0;k < n.length;k++) {
+       			if ((n[i] + n[j] + n[k]) == 0) {
+       				count++;
+       				Utility.output("Found the number "+"Count : "+count +" Distinct triplets : "+n[i]+" "+n[j]+" "+n[k]);
+       			
+       			} 
+       		 }
+       	 }
+        }
+    }
 	
 }
 	
