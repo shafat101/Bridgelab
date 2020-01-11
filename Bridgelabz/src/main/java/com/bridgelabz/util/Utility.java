@@ -8,6 +8,7 @@
  */
 package com.bridgelabz.util;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -125,11 +126,31 @@ public class Utility {
 		return x;
 	}
 	
-	//
+	//Returns Factors of a number
+    public static ArrayList<Integer> factors(int n){
+    	   ArrayList<Integer> arr = new ArrayList<Integer>();
+  	     while(n > 1) {
+  	    	 for(int i = 2;i <= n;i++) {
+  	    		 if(n % i == 0) {
+  	              arr.add(i);
+  	              n = n / i;
+  	              break;	    			 
+  	    		 }
+  	    	 }
+  	     }
+    	return arr;
+    	
+    }
 	
+    //will log array elements of an array
+    public static void arrayPrint(ArrayList<Integer> arr) {
+    	for (int i = 0; i < arr.size(); i++) {
+			Utility.output(Utility.StringOf(arr.get(i)));
+		}
+    }
 	
-	
+}
 	
 	
 
-}
+
