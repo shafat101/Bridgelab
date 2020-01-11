@@ -89,14 +89,39 @@ public class Utility {
 		logger.log(Level.INFO,value);
 	}
 
+	//Logger to log output 
+		public static void outputError() {
+			Logger logger = Logger.getLogger(Utility.class.getName());
+			logger.log(Level.INFO,"! Invalid Input");
+		}
+		
 	//Converts double into String
 	public static String StringOf(double value) {
 		return String.valueOf(value);		
 	}
+	
 	//Converts int into String
 	public static String StringOf(int value) {
 		return String.valueOf(value);	
 	}
-
+    
+	//Returns Nth Harmonic number 
+	public static double harmonicNumber(int n) {
+		double x = 1, j = 1;
+		//core logic
+		for(double i = 2;i <= n;i++) {
+			
+			x += j/i;
+			
+		}
+		return x;
+	}
+	
+	//
+	
+	
+	
+	
+	
 
 }

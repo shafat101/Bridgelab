@@ -1,20 +1,25 @@
 package com.bridgelabz.basicprogram;
 
+import com.bridgelabz.util.Utility;
+
 public class HarmonicNumber {
 
 	public static void main(String[] args) {
 		
-		double x = 1;
-		int n = 10;
-		double j = 1;
-		//core logic
-		for(double i = 2;i <= n;i++) {
-			
-			x += j/i;
-			
+		String n = Utility.scannerString();
+		if(n.isEmpty()) {
+			Utility.outputError();
+		}else {
+			boolean b = Utility.numberOrNot(n);
+			String s;
+			int numberOrNotReturn = Utility.numberOrNotReturn(n);
+	         if(b) {
+	        	 s = Utility.StringOf(Utility.harmonicNumber(numberOrNotReturn));
+	        	 Utility.output(s);
+	              	 
+	         }
 		}
-		System.out.println(x);
-
+		
 	}
 
 }
