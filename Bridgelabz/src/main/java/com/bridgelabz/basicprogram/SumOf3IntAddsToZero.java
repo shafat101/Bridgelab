@@ -1,3 +1,11 @@
+/***********************************************************************************
+ * purpose : A program with cubic running time. Read in N integers and counts the **
+ * number of triples that sum to exactly 0.prints the distinct triplets.          **                                                                                                     **
+ * @author SHAFAT BASHIR                                                          **                   ** 
+ * @version 1.0                                                                   **                  **
+ * @since 11/01/2020                                                              **                 **
+ * *********************************************************************************
+ */
 package com.bridgelabz.basicprogram;
 
 import com.bridgelabz.util.Utility;
@@ -17,6 +25,7 @@ public class SumOf3IntAddsToZero {
 				if(Utility.numberOrNot(s)) {
 					arr[i] = Utility.numberOrNotReturn(s);
 				}else {
+					i--;
 					continue;
 				}
 			}
