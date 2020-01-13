@@ -6,7 +6,7 @@
  * @since 11/01/2020                                                              **                 **
  * *********************************************************************************
  */
-package com.bridgelabz.basicprogram;
+package com.bridgelabz.functionalprograms;
 
 import com.bridgelabz.util.Utility;
 

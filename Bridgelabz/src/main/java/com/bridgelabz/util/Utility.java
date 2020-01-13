@@ -9,6 +9,7 @@
 package com.bridgelabz.util;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -169,7 +170,66 @@ public class Utility {
        	 }
         }
     }
+    
+    //root one quadratic equation formula
+    public static double rootOne(double a,double b,double c) {
+    	double delta = (b*b) - (4*a*c);
+    	double root1 = (-b + Math.sqrt(delta))/(2*a);
+         return root1;
+    }
+    
+    //root two quadratic equation formula
+    public static double rootTwo(double a,double b,double c) {
+    	double delta = (b*b) - (4*a*c);
+    	double root2 = (-b - Math.sqrt(delta))/(2*a);
+         return root2;
+    }
+    
+    //formulae to calculate distance
+    public static double cDistance(double x,double y) {
+    	double distance = x*x + y*y;
+    	x = Math.pow(distance,0.5);
+    	return x;    	
+    }
+    
+    //the wind chill
+    public static double windChill(double t,double v) {
+    	double w = 35.74 + 0.6215 * t +(0.4275 * t - 35.75)*(Math.pow(v, 0.16));
+    	return w;
+    }
+    
+    //Generating random number for a particular range
+    public static int generatingRandomNumsInParticularrng(int x,int y) {
+    	Random rand = new Random();
+    	return rand.nextInt(y) + x;
+    }
+    
+    //Comparing two numbers and returns true if same
+    public static boolean comparingNums(int x,int y) {
+    	if(x == y) {
+    		return true;
+    	}else {
+    		return false;
+    	}
+    }
+    
+    //Returns total seconds in a given time
+    public static int timeInSeconds(int h,int m,int s) {
+    	int totalSeconds = (h * 60 * 60) + m * 60 + s;
+    	return totalSeconds;
+    }
 	
+    //TicTacToe winning logic using 2D array
+    public static boolean winningLogic(int[][] arr) {
+    	if((arr[0][0] == arr[0][1] && arr[0][1] == arr[0][2]) || (arr[1][0] == arr[1][1] && arr[1][1] == arr[1][2]) || 
+    			(arr[2][0] == arr[2][1] && arr[2][1] == arr[2][2]) || (arr[0][0] == arr[1][0] && arr[1][0] == arr[2][0]) ||
+    			(arr[0][1] == arr[1][1] && arr[1][1] == arr[2][1]) || (arr[0][2] == arr[1][2] && arr[1][2] == arr[2][2]) ||
+    			(arr[0][0] == arr[1][1] && arr[1][1] == arr[2][2]) || (arr[2][0] == arr[1][1] && arr[1][1] == arr[0][2]))
+    	{
+    		return true;
+    	}
+    	return false;
+    }
 }
 	
 	
