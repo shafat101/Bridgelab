@@ -40,7 +40,14 @@ public class Utility {
 		}
 		return n;
 	}
-
+     
+	//Returns Current time in mills
+	public static long timeInMills() {
+		long time = System.currentTimeMillis(); 
+		return time;
+	}
+	
+	
 	//check for Zero
 	public static boolean checkZero(double x) {
 		if(x == 0) {
