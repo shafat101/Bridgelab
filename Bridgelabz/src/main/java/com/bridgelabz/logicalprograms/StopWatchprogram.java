@@ -27,7 +27,7 @@ public class StopWatchprogram {
 				}
 			}
 		}
-		System.out.println("Time Elapsed : "+(end - start));
+		System.out.println("Time Elapsed : "+(end - start) / 1000 +" Seconds");
 		
 
 	}
