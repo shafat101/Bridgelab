@@ -8,6 +8,7 @@
  */
 package com.bridgelabz.util;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -22,8 +23,32 @@ public class Utility {
 		Scanner input = new Scanner(System.in);
 		return input.next();
 	}
+    
+	//scannerArray to take multiple int values
+	public static int[] scannerArray(int len) {
+		
+		String s;int[] n = new int[len];
+		for(int i =0;i < len;i++) {
+			System.out.println("Enter the number : ");
+			s = Utility.scannerString();
+			if (Utility.numberOrNot(s)) {
+				n[i] = Utility.numberOrNotReturn(s);
+			}else {
+				i--;
+				continue;
+			}
+		}
+		return n;
+	}
 
-
+	//check for Zero
+	public static boolean checkZero(double x) {
+		if(x == 0) {
+			return true;
+		}
+		return false;
+	}
+	
 	// Validating the Input FOR UserInput
 	public static String validatingInputforUserInput() {
 		 String input;
@@ -33,7 +58,16 @@ public class Utility {
 			 return null;
 		  }
 	}
-
+    
+	// Validating the Input FOR UserInput
+		public static boolean validatingInputRange(int t,int v) {
+			 int x = 50;int v1 = 120;int v2 = 3; 
+			  if((t < x) && (v < v1) && (v > v2)) {
+				 return true; 
+			  }else {
+				 return false;
+			  }
+		}
 	// Random Number generator for coin flip
 	public static double rNumberGenerator() {
 		return Math.random();
@@ -45,9 +79,15 @@ public class Utility {
 		input.hasNext();
 		return input.nextInt();
 	}
-
+    //Subtraction of 2 numbers
+	public static double sun2Numbers(double x,double y) {
+		x = x - y;
+		return x;		
+	} 
+	
 	//Takes two arguments X and Y gives us Percentage
 	public static double percentage(double x,double y) {
+		
 		return (x / y) * 100;
 	}
 
@@ -199,9 +239,18 @@ public class Utility {
     }
     
     //Generating random number for a particular range
-    public static int generatingRandomNumsInParticularrng(int x,int y) {
-    	Random rand = new Random();
-    	return rand.nextInt(y) + x;
+    public static String generatingRandom(int x) {
+    	char[] chars = "a123456789bcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+    	Random random = new SecureRandom();
+    	StringBuffer sb = new StringBuffer();
+    	while(x > 0) {
+    	sb.append(chars[(int) (random.nextInt(chars.length))]);
+    	x--;
+    	}
+    	
+    	String couponCode = sb.toString();
+    	
+    	return couponCode;
     }
     
     //Comparing two numbers and returns true if same
@@ -230,6 +279,50 @@ public class Utility {
     	}
     	return false;
     }
+    //Returns two random values
+    public static double duelrandomiser() {
+    	
+    double	randno = Math.random();
+    	
+    	
+    	return randno;
+    }
+    
+    // Gambling function 
+    public static double[] roundN(int stake1,int goal,int num) {
+    	 int temp = num;double[] arr = new double[4];
+		 int n = 0;int stake = stake1;
+    	
+    		
+    		 while(stake < goal && num > 0 && stake > 0) {
+    			 double rand = Utility.duelrandomiser();
+    			
+    			 if(rand > 0.5) {
+    				 n++;
+    				 stake +=  40;
+    				 if( goal >= stake && num >0) {
+    					 Utility.roundN(stake - 1, goal, num--);
+    				 }else{
+    					 break;
+    				 }
+    			 }
+    				 else if(rand < 0.5) {
+    					 if(stake > 0 && goal >= stake && num > 0) {
+    						 Utility.roundN(stake - 3, goal, num--);
+    					 }
+    				 }
+    	                			 
+    				 
+    			 }
+    		 arr[0] = n;arr[1] = temp;arr[2] = num;arr[3] = stake;
+  		
+    		   return arr;
+    	 
+
+    }
+    
+    //
+    
 }
 	
 	
