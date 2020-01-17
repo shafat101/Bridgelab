@@ -75,6 +75,21 @@ public class Utility {
 				 return false;
 			  }
 		}
+		
+	// Validating Input is a char
+		public static boolean validatinginputChar(String s) {
+			
+			char letter = s.charAt(0);
+			if (Character.toString(letter).matches("^[a-pA-P0-9]*$")) {
+		         return true;
+		    }else{
+		        return false;
+		    }
+		}
+		
+		
+		
+		
 	// Random Number generator for coin flip
 	public static double rNumberGenerator() {
 		return Math.random();
@@ -327,8 +342,20 @@ public class Utility {
     	 
 
     }
+ 
     
-    //
+    //jUnit temperature Conversion
+    public static double tempConversion(double inputTemp,char converTo) {
+    	double result;
+    	if (converTo == 'f' || converTo == 'F') {
+    		result = (inputTemp * (9/5)) + 32;
+    	}else if(converTo == 'c' || converTo == 'C') {
+    		result = (inputTemp - 32) * 5/9;
+    	}else {
+    		result = Double.MAX_VALUE;
+    	}
+    	return result;
+    }
     
 }
 	
