@@ -21,7 +21,9 @@ public class Utility {
      // Get Input from the user     
 	public static String scannerString() {
 		Scanner input = new Scanner(System.in);
-		return input.next();
+		String s = input.next();
+		
+		return s;
 	}
     
 	//scannerArray to take multiple int values
@@ -357,8 +359,149 @@ public class Utility {
     	return result;
     }
     
-}
+    //jUnit monthlyPayment
+    public static double payment(double _P,double _Y,double _R) {
+    	double paymentt = Double.MIN_VALUE;
+    	try {
+    		double r = _R / (12 * 100);
+    		double n = 12 * _Y;
+			paymentt = (_P * r) / Math.pow((1 - (1 + r)), -n);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+    	
+    	return paymentt;
+    }    
+    
+    //jUnit toBinary
+    public static ArrayList<Integer> toBinary(int n) {
+         int rem;
+         ArrayList<Integer> arr = new ArrayList<Integer>();
+         
+     	while(n > 0) {
+    		rem = n % 2;
+    		n = n / 2;
+    		arr.add(rem);
+    		
+    	//	System.out.println(rem);
+    	}
+     	return arr;
+    }
+    
+    //reverse an Array
+    public static ArrayList<Integer> reverseArr(ArrayList<Integer> arr){
+    	int i;
+    	for (int j = 0;j < arr.size() / 2;j++) {
+    		i = arr.get(arr.size() - (j + 1));
+    		arr.set(arr.size() - (j + 1), arr.get(j));
+    		arr.set(j, i);		
+    	}
+    	return arr;
+    }
+    
+    //returns sqrt using newtons method
+    public static double sqrtNewtonsMethod(double c) {
+    	double t = c;
+    	double EPSILON = 1E-15;
+    	while (Math.abs(t - c/t) > EPSILON*t)
+            t = (c/t + t) / 2.0;
+        return t;
+    }
+    
+   //returns sqrt using newtons method error tolerance
+    public static double sqrtNewtonsMethod(double c,double epsilon) {
+    	double t = c;
+    	while (Math.abs(t - c/t) > epsilon*t)
+            t = (c/t + t) / 2.0;
+        return t;
+    }
+    
+   //returns word from word list
+    public static int binarySearch(String[] arr,String word) {
+    	
+		int l = 0, r = arr.length - 1;
+		while (l <= r) {
+			int mid = l + (r - l) / 2;
+			int result = word.compareTo(arr[mid]);
+			if (result == 0) {
+				return mid;
+			}
+			if (result > 0) {
+				l = mid + 1;
+			} else {
+				r = mid - 1;
+			}
+		}
+
+		return -1;
+	}
+    
+     //Insertion sort to sort a String
+   public static String[] insertionSortForString(String[] arr) {
+	   String key;int i;
+	   for(int j = 1;j < arr.length - 1;j++) {
+		   key = arr[j];
+		   i = j - 1;
+		   
+		   while(i >= 0 && arr[i].charAt(0) > key.charAt(0)) {
+			   arr[i+1] = arr[i];
+			   i = i - 1;
+			   
+		   }
+		   arr[i + 1] = key;
+	   }
+	   for (String string : arr) {
+		System.out.println(string);
+	}
+	   return arr;
+   }
+   
+   //Bubble sort
+  public static  int[] bubbleSort(int arr[]){
+   
+       int n = arr.length;
+       for (int i = 0; i < n-1; i++) {
+    	   
+       
+           for (int j = 0; j < n-i-1; j++) {
+        	   
+           
+               if (arr[j] > arr[j+1])
+               {
+                   
+                   int temp = arr[j];
+                   arr[j] = arr[j+1];
+                   arr[j+1] = temp;
+               }
+           }
+           }
+       return arr;
+   }
+    
+    }
+
 	
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
