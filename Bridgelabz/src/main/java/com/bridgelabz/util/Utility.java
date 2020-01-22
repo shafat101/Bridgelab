@@ -8,6 +8,9 @@
  */
 package com.bridgelabz.util;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Random;
@@ -478,6 +481,26 @@ public class Utility {
        return arr;
    }
     
+  //Read a file
+  public static String readFile(String str) {
+	  File file = new File(str); 
+	  String tt = ""; 
+	  try {
+	  BufferedReader br = new BufferedReader(new FileReader(file)); 
+	  String st;
+	  while ((st = br.readLine()) != null) {
+		//  System.out.print(st); 
+		  tt += st;
+	  }
+	   
+	  }catch (Exception e) {
+		e.printStackTrace();
+	}
+	 // System.out.print(tt); 
+	  return tt;
+  }
+  
+  
     }
 
 	
