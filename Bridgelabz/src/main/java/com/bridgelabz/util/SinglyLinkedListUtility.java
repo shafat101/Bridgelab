@@ -7,7 +7,6 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 	
 	
 	
-	
 		//Given a ListNode, print all elements it holds
 		public  void display(ListNode head){
 			if(head == null) {
@@ -15,7 +14,7 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 			}
 		 ListNode current = head;
 		 while(current != null) {
-			 System.out.print(current.data + " --> ");
+			 System.out.println(current.data );
 			 current = current.next;
 		 }
 		}
@@ -31,7 +30,7 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 				count++;
 				current = current.next;
 			}
-			System.out.println("Length = " + count);
+			//System.out.println("Length = " + count);
 			return count;
 		}
 		
@@ -42,22 +41,22 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 		
 		//Insearting a Node in SinglyLinkedList at the Beggining
 		public  ListNode insertAtBeggining(ListNode head,T x) {
-			if(head == null) {
-				return head;
-			}
+//			if(head == null) {
+//				return head;
+//			}
 			ListNode newNode = new ListNode(x);
 			newNode.next = head;
 			head = newNode;
 			
-			display(head);
+		//	display(head);
 			return head;
 		}
 		
 		//Insearting a Node in SinglyLinkedList at the End
 		public  ListNode inseartAtEnd(ListNode head,T x) {
-			if(head == null) {
-				return head;
-			}
+//			if(head == null) {
+//				return head;
+//			}
 			ListNode newNode = new ListNode(x);
 			ListNode current = head;
 			while(null != current.next) {
@@ -67,7 +66,7 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 			current.next = newNode;
 			
 			
-			display(head);
+			//display(head);
 			return head;
 		}
 		//Insearting a Node in SinglyLinkedList after a given node
@@ -158,7 +157,7 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 			ListNode current = previous.next;
 			previous.next = current.next;
 			current.next = null;
-			return current;
+			return head;
 			}
 			
 		}
@@ -180,6 +179,23 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 		return false;	
 		}
 		
+		//Returns position of key element
+        public  int searchElementposition(ListNode head,T searchKey) {
+			
+			
+			ListNode current = head;
+			int count = 0;
+			while(current != null) {
+				count++;
+				if(current.data.equals(searchKey)) {
+					return count;
+					
+				}
+				current = current.next;
+			}
+		return 0;	
+		}
+
 		//Reverse a s Ll 
 		public static ListNode riverseLl(ListNode head) {
 			if(head == null) {
@@ -274,9 +290,9 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 		
 		//Remove a given Key from Singly Linked List
 		public  ListNode removeGiveKeyElement(ListNode head,T key) {
-			if(head == null) {
-				return head;
-			}
+//			if(head == null) {
+//				return head;
+//			}
 			ListNode current = head;
 			ListNode temp = null;
 			
@@ -292,9 +308,9 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 		}
 		
 		//it contains a static inner class listnode
-		private  static class ListNode<T>{
-			private T data;
-			private ListNode next;
+		public  static class ListNode<T>{
+		   T data;
+		    ListNode next;
 			
 			public ListNode(T data) {
 				this.data = data;
@@ -307,50 +323,17 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 			
 		    for (int i = n - 1; i >= 0 ; i--) {
 		    	//head = null;
+//		    	String s = "shafat";
 		    	head = insertAtBeggining(head,(T) arr[i]); 
-		    	System.out.println(head);
-		    }
 		    	
+		    }
+		   // System.out.println(head);
 		    return head; 
 		}
 		public static void main(String[] args) {
 			
 			
-			SinglyLinkedListUtility<Comparable> sll = new SinglyLinkedListUtility<Comparable>();
-			
-			String[] arr;
-			 String str = "/home/mobicom/Documents/txt.txt";
-			
-			 arr =  (Utility.readFile(str)).split(" ");
-			 
-			   
-			  ListNode head =  sll.arrayToList(arr, arr.length);
-			
-			  sll.display(head);
-			
-			// TODO Auto-generated method stub
-//	        ListNode head = new ListNode(7);
-//	        ListNode second = new ListNode(8);
-//	        ListNode third = new ListNode(11);
-//	        ListNode fourth = new ListNode(11);
-//	        ListNode fifth = new ListNode(15);
-//	        ListNode sixth = new ListNode(15);
-//	        
-//			 //Attach them together to form a list
-//	        head.next = second; //10 --> 8
-//	        second.next = third;//8 --> 1
-//	        third.next = fourth;//1 --> 11
-//			fourth.next = fifth;
-//			fifth.next = sixth;
-//			SinglyLinkedListUtility linkedListsTest = new SinglyLinkedListUtility();
-//	     
-//	         linkedListsTest.display(head);
-//	     
-//	        System.out.println();
-//	       
-//	        ListNode insertIntoSortedList = linkedListsTest.insertIntoSortedList(head, 9 );
-//	        linkedListsTest.display(insertIntoSortedList);
-	       // System.out.println(duplicates.data);
+
 		}
 		
 	}

@@ -11,12 +11,16 @@ package com.bridgelabz.util;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.bridgelabz.util.SinglyLinkedListUtility.ListNode;
 
 public class Utility {
 
@@ -500,7 +504,53 @@ public class Utility {
 	  return tt;
   }
   
+  //Create a file
+  public static boolean createFile() {
+	  boolean flag = false;
+	  try {
+	      File myObj = new File("filename1.txt");
+	      if (myObj.createNewFile()) {
+	        System.out.println("File created: " + myObj.getName());
+	        return true;
+	      } else {
+	        System.out.println("File already exists.");
+	      }
+	    } catch (IOException e) {
+	      System.out.println("An error occurred.");
+	      e.printStackTrace();
+	    }
+	return flag;
+	  
+  }
   
+  //Write to a file
+  public static void writeFile(String str) {
+	  try {
+	      FileWriter myWriter = new FileWriter("/home/mobicom/Documents/filename.txt");
+	      myWriter.write(str);
+	      myWriter.close();
+	      System.out.println("Successfully wrote to the file.");
+	    } catch (IOException e) {
+	      System.out.println("An error occurred.");
+	      e.printStackTrace();
+	    }
+  }
+  
+  //SLL to String
+  public static String sLLtoString(ListNode head) {
+		if(head == null) {
+			return null;
+		}
+	 ListNode current = head;
+	 String str = "";
+	 while(current != null) {
+		// System.out.println(current.data );
+		 str += current.data + " ";
+		 current = current.next;
+		 
+	 }
+	return str;  
+  }
     }
 
 	
