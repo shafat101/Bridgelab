@@ -551,6 +551,46 @@ public class Utility {
 	 }
 	return str;  
   }
+  //Returns 0 for Sunday, 1 for Monday, and so forth.
+  public static int day(int month, int day, int year) {
+      int y = year - (14 - month) / 12;
+      int x = y + y/4 - y/100 + y/400;
+      int m = month + 12 * ((14 - month) / 12) - 2;
+      int d = (day + x + (31*m)/12) % 7;
+      return d;
+  }
+  
+  //calendar function
+  public static void calenderPrint(int month,int year) {
+	  
+	  //Name of Months
+	  String[] months = {""+"janury","February","March","April","May","June",
+			  "July","August","September","October","November","December"};
+	  //Number of days in month var
+	  int[] days = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	  //check leap year or not
+	  if (month == 2 && leapOrNot(year)) {
+		  days[month] = 29;
+	  }
+	  System.out.println("   "+months[month]+" "+year);
+	  System.out.println(" S  M Tu  W Th  F  S");
+	  
+	  // starting day
+      int d = day(month, 1, year);
+
+      // print the calendar
+      for (int i = 0; i < d; i++)
+          System.out.println("   ");
+      for (int i = 1; i <= days[month]; i++) {
+    	  System.out.printf("%2d ", i);
+          if (((i + d) % 7 == 0) || (i == days[month])) {
+        	  System.out.println();
+          } 
+      }
+  }
+  
+  
+  
     }
 
 	
