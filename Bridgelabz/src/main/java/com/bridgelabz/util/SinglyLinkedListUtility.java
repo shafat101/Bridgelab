@@ -52,6 +52,18 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 			return head;
 		}
 		
+		//Insearting a Node in SinglyLinkedList at the Beggining
+				public  ListNode insertAtBeggining(ListNode head,int x) {
+//					if(head == null) {
+//						return head;
+//					}
+					ListNode newNode = new ListNode(x);
+					newNode.next = head;
+					head = newNode;
+					
+				//	display(head);
+					return head;
+				}
 		//Insearting a Node in SinglyLinkedList at the End
 		public  ListNode inseartAtEnd(ListNode head,T x) {
 //			if(head == null) {
@@ -325,6 +337,19 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 		    	//head = null;
 //		    	String s = "shafat";
 		    	head = insertAtBeggining(head,(T) arr[i]); 
+		    	
+		    }
+		   // System.out.println(head);
+		    return head; 
+		}
+		public ListNode arrayToList(int arr[],int n) {
+			ListNode head = null;
+			
+			
+		    for (int i = n - 1; i >= 0 ; i--) {
+		    	//head = null;
+//		    	String s = "shafat";
+		    	head = insertAtBeggining(head, arr[i]); 
 		    	
 		    }
 		   // System.out.println(head);
