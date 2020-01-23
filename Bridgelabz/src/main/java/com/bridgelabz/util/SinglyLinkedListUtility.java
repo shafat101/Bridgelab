@@ -1,6 +1,6 @@
 package com.bridgelabz.util;
 
-
+import java.util.EmptyStackException;
 
 public class SinglyLinkedListUtility<T extends Comparable> {
 	//private ListNode head; //Head node to hold the list
@@ -319,6 +319,8 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 		return head;
 		}
 		
+		
+		
 		//it contains a static inner class listnode
 		public  static class ListNode<T>{
 		   T data;
@@ -355,6 +357,9 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 		   // System.out.println(head);
 		    return head; 
 		}
+	
+	
+		
 		public static void main(String[] args) {
 			
 			
