@@ -32,7 +32,13 @@ public class Utility {
 		
 		return s;
 	}
-    
+    //input boolean
+	public static boolean scannerBoolean() {
+		Scanner input = new Scanner(System.in);
+		boolean s = input.hasNext();
+		
+		return s;
+	}
 	//scannerArray to take multiple int values
 	public static int[] scannerArray(int len) {
 		
@@ -50,6 +56,8 @@ public class Utility {
 		return n;
 	}
      
+	//
+	
 	//Returns Current time in mills
 	public static long timeInMills() {
 		long time = System.currentTimeMillis(); 
@@ -589,7 +597,7 @@ public class Utility {
       }
   }
   
-  
+  //
   
     }
 

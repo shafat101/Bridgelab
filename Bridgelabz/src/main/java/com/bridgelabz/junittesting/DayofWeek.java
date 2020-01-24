@@ -12,7 +12,7 @@ public class DayofWeek {
 		 System.out.println("Enter the year : ");
 		 String year = Utility.scannerString();
 		int _month = 0,_day = 0,_year = 0;
-		int count = 0;
+		
 		
 		if(Utility.numberOrNot(month) || Utility.numberOrNot(day) || Utility.numberOrNot(year)) {
 			

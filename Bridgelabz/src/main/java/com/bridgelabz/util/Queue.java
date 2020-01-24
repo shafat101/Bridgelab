@@ -1,37 +1,37 @@
 package com.bridgelabz.util;
 
+import com.bridgelabz.util.SinglyLinkedListUtility.ListNode;
 
-class QNode { 
-    int key; 
-    QNode next; 
-  
-    // constructor to create a new linked list node 
-    public QNode(int key) 
-    { 
-        this.key = key; 
-        this.next = null; 
-    } 
-} 
-public class Queue {
+public class Queue<T> {
 	
 	// A class to represent a queue 
 	// The queue, front stores the front node of LL and rear stores the 
 	// last node of LL 
 	
-	    QNode front, rear; 
-	    private int length; 
+	    Qnode front, rear; 
+	    private int count; 
 	    public Queue() 
 	    { 
 	        this.front = this.rear = null; 
-	        this.length = 0;
+	        this.count = 0;
 	    } 
 	  
+	    public  void display(Qnode head){
+			if(head == null) {
+				return;
+			}
+			Qnode current = head;
+		 while(current != null) {
+			 System.out.println(current.key );
+			 current = current.next;
+		 }
+		}
 	    // Method to add an key to the queue. 
-	    void enqueue(int key) 
+	    public void enqueue(T key) 
 	    { 
 	  
 	        // Create a new LL node 
-	        QNode temp = new QNode(key); 
+	        Qnode temp = new Qnode(key); 
 	  
 	        // If queue is empty, then new node is front and rear both 
 	        if (this.rear == null) { 
@@ -42,32 +42,33 @@ public class Queue {
 	        // Add the new node at the end of queue and change rear 
 	        this.rear.next = temp; 
 	        this.rear = temp; 
-	        length++;
+	        count++;
 	    } 
 	  
 	    // Method to remove an key from queue. 
-	    QNode dequeue() 
+	    public Qnode dequeue() 
 	    { 
 	        // If queue is empty, return NULL. 
 	        if (this.front == null) {
 	            return null; 
 	        }
 	        // Store previous front and move front one node ahead 
-	        QNode temp = this.front; 
+	        Qnode temp = this.front; 
 	        this.front = this.front.next; 
 	  
 	        // If front becomes NULL, then change rear also as NULL 
 	        if (this.front == null) { 
 	            this.rear = null; 
 	        }
-	        length--;
+	        count--;
 	        return temp; 
 	    } 
-	    public int length() {
-			return length;
-		}
+	    public int size() {
+	    	return count;
+	    }
 	    public boolean isEmpty() {
-			return length == 0;
+			return (size() == 0);
 		}
+	    
 
 }
