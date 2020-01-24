@@ -597,8 +597,27 @@ public class Utility {
       }
   }
   
-  //
-  
+  //palndrome function using deque
+  public static boolean palandromeFunction(String str) {
+		Deque deque = new Deque(str.length());
+		boolean flag = false;
+		for(int i = 0;i < str.length();i++) {
+			deque.insertrear(Utility.StringOf(str.charAt(i)));
+		}
+		 while(! deque.isEmpty())  {
+	    	//  System.out.println("rear element : "+ deque.getRear() +" Front Element : "+deque.getFront());
+	    	  if(deque.getRear().equals(deque.getFront())) {
+	    		  deque.deleterear();
+		    	  deque.deletefront();
+		    	  flag = true;
+	    	  }else {
+	    		  flag = false;
+	    		  break;
+	    	  }
+	    	  
+	      }
+		return flag;
+	}
     }
 
 	
