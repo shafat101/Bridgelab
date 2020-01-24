@@ -551,7 +551,7 @@ public class Utility {
 	 }
 	return str;  
   }
-  //Returns 0 for Sunday, 1 for Monday, and so forth.
+  // (dayOfWeek) Returns 0 for Sunday, 1 for Monday, and so forth.
   public static int day(int month, int day, int year) {
       int y = year - (14 - month) / 12;
       int x = y + y/4 - y/100 + y/400;
