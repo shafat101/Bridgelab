@@ -10,15 +10,22 @@ package com.bridgelabz.util;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import com.bridgelabz.util.SinglyLinkedListUtility.ListNode;
 
@@ -534,6 +541,8 @@ public class Utility {
   //Write to a file
   public static void writeFile(String str) {
 	  try {
+		  
+		  
 	      FileWriter myWriter = new FileWriter("/home/mobicom/Documents/filename.txt");
 	      myWriter.write(str);
 	      myWriter.close();
@@ -542,6 +551,218 @@ public class Utility {
 	      System.out.println("An error occurred.");
 	      e.printStackTrace();
 	    }
+  }
+  
+  //Update a file 
+  public static void upDateFile(String[] data) {
+	  try { 
+		  
+          // Get the name of the contact to be updated 
+          // from the Command line argument 
+          String newName = data[0]; 
+           
+          
+
+          String nameNumberString; 
+          String name; 
+          long number; 
+          int index; 
+
+          // Using file pointer creating the file. 
+          File file = new File("friendsContact.txt"); 
+
+          if (!file.exists()) { 
+
+              // Create a new file if not exists. 
+              file.createNewFile(); 
+          } 
+
+          // Opening file in reading and write mode. 
+          RandomAccessFile raf 
+              = new RandomAccessFile(file, "rw"); 
+          boolean found = false; 
+
+          // Checking whether the name 
+          // of contact already exists. 
+          // getFilePointer() give the current offset 
+          // value from start of the file. 
+          while (raf.getFilePointer() < raf.length()) { 
+
+              // reading line from the file. 
+              nameNumberString = raf.readLine(); 
+
+              // finding the position of '!' 
+              index = nameNumberString.indexOf('!'); 
+
+              // separating name and number. 
+              name = nameNumberString 
+                         .substring(0, index); 
+              number = Long 
+                           .parseLong(nameNumberString 
+                                          .substring(index + 1)); 
+
+              // if condition to find existence of record. 
+              if (name == newName) { 
+                  found = true; 
+                  break; 
+              } 
+          } 
+
+          // Update the contact if record exists. 
+          if (found == true) { 
+
+              // Creating a temporary file 
+              // with file pointer as tmpFile. 
+              File tmpFile = new File("temp.txt"); 
+
+              // Opening this temporary file 
+              // in ReadWrite Mode 
+              RandomAccessFile tmpraf 
+                  = new RandomAccessFile(tmpFile, "rw"); 
+
+              // Set file pointer to start 
+              raf.seek(0); 
+
+              // Traversing the friendsContact.txt file 
+              while (raf.getFilePointer() < raf.length()) { 
+
+                  // Reading the contact from the file 
+                  nameNumberString = raf.readLine(); 
+
+                  index = nameNumberString.indexOf('!'); 
+                  name = nameNumberString.substring(0, index); 
+
+                  // Check if the fetched contact 
+                  // is the one to be updated 
+                  if (name.equals("")) { 
+
+                      // Update the number of this contact 
+                      nameNumberString 
+                          = name ;
+                  } 
+
+                  // Add this contact in the temporary file 
+                  tmpraf.writeBytes(nameNumberString); 
+
+                  // Add the line separator in the temporary file 
+                  tmpraf.writeBytes(System.lineSeparator()); 
+              } 
+
+              // The contact has been updated now 
+              // So copy the updated content from 
+              // the temporary file to original file. 
+
+              // Set both files pointers to start 
+              raf.seek(0); 
+              tmpraf.seek(0); 
+
+              // Copy the contents from 
+              // the temporary file to original file. 
+              while (tmpraf.getFilePointer() < tmpraf.length()) { 
+                  raf.writeBytes(tmpraf.readLine()); 
+                  raf.writeBytes(System.lineSeparator()); 
+              } 
+
+              // Set the length of the original file 
+              // to that of temporary. 
+              raf.setLength(tmpraf.length()); 
+
+              // Closing the resources. 
+              tmpraf.close(); 
+              raf.close(); 
+
+              // Deleting the temporary file 
+              tmpFile.delete(); 
+
+              System.out.println(" Friend updated. "); 
+          } 
+
+          // The contact to be updated 
+          // could not be found 
+          else { 
+
+              // Closing the resources. 
+              raf.close(); 
+
+              // Print the message 
+              System.out.println(" Input name"
+                                 + " does not exists. "); 
+          } 
+      } 
+
+      catch (IOException ioe) { 
+          System.out.println(ioe); 
+      } 
+
+      catch (NumberFormatException nef) { 
+          System.out.println(nef); 
+      } 
+  } 
+  
+  //Write JSON to file
+  public static void writeJson(String[] args) {
+	  JSONObject food = new JSONObject();
+	  food.put("name", args[0]);
+	  food.put("weight", args[1]);
+	  food.put("price", args[2]);
+	  
+	  JSONObject inventoryDetails = new JSONObject();
+	  inventoryDetails.put(args[3], food);
+	  
+	  JSONArray foodList = new JSONArray();
+	  foodList.add(inventoryDetails);
+	  
+	 // Utility.writeFile(food,"");
+	  try (FileWriter file = new FileWriter("/home/mobicom/Documents/inventory.json")) {
+		  
+          file.write(foodList.toJSONString());
+          file.flush();
+
+      } catch (IOException e) {
+          e.printStackTrace();
+      }
+  }
+  
+  //Read JSON file
+  public static void readJson() {
+	  JSONParser jsonParser = new JSONParser();
+      
+      try (FileReader reader = new FileReader("/home/mobicom/Documents/inventory.json"))
+      {
+          //Read JSON file
+          Object obj = jsonParser.parse(reader);
+
+          JSONArray foodList = (JSONArray) obj;
+          System.out.println(foodList);
+           
+          //Iterate over employee array
+          foodList.forEach( emp -> parseEmployeeObjectJson( (JSONObject) emp ) );
+
+      } catch (FileNotFoundException e) {
+          e.printStackTrace();
+      } catch (IOException e) {
+          e.printStackTrace();
+      } catch (ParseException e) {
+          e.printStackTrace();
+      }
+  }
+  
+  private static void parseEmployeeObjectJson(JSONObject food) 
+  {
+      //Get employee object within list
+      JSONObject foodObject = (JSONObject) food.get("Rice");
+       
+      //Get employee first name
+      String name = (String) foodObject.get("name");    
+      System.out.println(name);
+       
+      //Get employee last name
+      String weight = (String) foodObject.get("weight");  
+      System.out.println(weight);
+       
+      //Get employee website name
+      String price = (String) foodObject.get("price_per_kg");    
+      System.out.println(price);
   }
   
   //SLL to String
@@ -618,6 +839,36 @@ public class Utility {
 	      }
 		return flag;
 	}
+  
+  //PrimeNumbers in particular range
+  public static int[] rangePrineNumbers(int low,int high) {
+	int[] arr = new int[high  / 4];
+	int j = 0;
+	arr[j] = high;
+        while (low < high) {
+        	if(low < 3){
+        	 low = 3;
+        	}
+            boolean flag = false;
+            for(int i = 2; i <= low/2; ++i) {
+            	
+                if(low % i == 0) {
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag) {
+              //  System.out.println(low + " ");
+                arr[j+1] = low;
+                j++;     
+            }
+            ++low;
+        }
+		return arr;  
+  }
+  
+ 
+  
     }
 
 	

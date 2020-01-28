@@ -66,9 +66,9 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 				}
 		//Insearting a Node in SinglyLinkedList at the End
 		public  ListNode inseartAtEnd(ListNode head,T x) {
-//			if(head == null) {
-//				return head;
-//			}
+			if(head == null) {
+				return head;
+			}
 			ListNode newNode = new ListNode(x);
 			ListNode current = head;
 			while(null != current.next) {
@@ -350,7 +350,7 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 			
 		    for (int i = n - 1; i >= 0 ; i--) {
 		    	//head = null;
-//		    	String s = "shafat";
+//		    	String s = "shafat101";
 		    	head = insertAtBeggining(head, arr[i]); 
 		    	
 		    }
