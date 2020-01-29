@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -24,9 +25,11 @@ import java.util.logging.Logger;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.bridgelabz.objectorientedprograms.Food;
 import com.bridgelabz.util.SinglyLinkedListUtility.ListNode;
 
 public class Utility {
@@ -699,45 +702,89 @@ public class Utility {
       } 
   } 
   
-  //Write JSON to file
-  public static void writeJson(String[] args) {
+  //practice
+  public static JSONObject jsonaddd(String name,String weight,double price) {
 	  JSONObject food = new JSONObject();
-	  food.put("name", args[0]);
-	  food.put("weight", args[1]);
-	  food.put("price", args[2]);
+	  food.put("name",name);
+	  food.put("weight",weight);
+	  food.put("price",price);
 	  
-	  JSONObject inventoryDetails = new JSONObject();
-	  inventoryDetails.put(args[3], food);
-	  
+	return food;
+  }
+  
+  //Write JSON to file
+  public static JSONObject writeJson(String[] args) {
+	  Food food = new Food();
 	  JSONArray foodList = new JSONArray();
-	  foodList.add(inventoryDetails);
+	  System.out.println("Enter total number of items : ");
+	  String num = Utility.scannerString();
+	  if(Utility.numberOrNot(num)) {
+		  int n = Utility.numberOrNotReturn(num);
+		 
+	  for(int i = 0;i < n;i++) {
+	    	//  food.clear();	  
+	  System.out.println("Enter the name of "+args[0]);
+	  food.setName(Utility.scannerString());
+	  System.out.println("Enter the weight of "+args[0]);
+	  food.setWeight(Utility.scannerString());
+	  System.out.println("Enter the price of "+args[0]);
+	  food.setPrice(Utility.scannerInt());
+	  System.out.println("************************");
+	
+	 foodList.add(Utility.jsonaddd(food.getName(),food.getWeight(),food.getPrice()));
 	  
-	 // Utility.writeFile(food,"");
-	  try (FileWriter file = new FileWriter("/home/mobicom/Documents/inventory.json")) {
-		  
-          file.write(foodList.toJSONString());
-          file.flush();
+	  }
+	  }else {
+		 return null;
+	  }
+	  
+	  JSONObject obj = new JSONObject();
+	  obj.put(args[0], foodList);
+	//  System.out.println(obj);
+	return obj;
+	 
+  }
+  
+  //write it into the file
+  public static void insertIntoFile(JSONObject obj ,String str) {
+	  String s = "/home/mobicom/Documents/"+str+".json";
+		//  System.out.println(s);
+		  try (FileWriter file = new FileWriter(s)) {
+			  
+	          file.write(obj.toJSONString());
+	          file.flush();
 
-      } catch (IOException e) {
-          e.printStackTrace();
-      }
+	      } catch (IOException e) {
+	          e.printStackTrace();
+	      }
   }
   
   //Read JSON file
-  public static void readJson() {
-	  JSONParser jsonParser = new JSONParser();
-      
-      try (FileReader reader = new FileReader("/home/mobicom/Documents/inventory.json"))
-      {
-          //Read JSON file
-          Object obj = jsonParser.parse(reader);
-
-          JSONArray foodList = (JSONArray) obj;
-          System.out.println(foodList);
-           
-          //Iterate over employee array
-          foodList.forEach( emp -> parseEmployeeObjectJson( (JSONObject) emp ) );
-
+  public static JSONArray readJson(String str) {
+	  JSONParser parser = new JSONParser();
+      String s = "/home/mobicom/Documents/"+str+".json";
+   //   System.out.println(s);
+      try (FileReader reader = new FileReader(s))
+      {    
+    	  Object ob  = parser.parse(reader);
+    	  JSONObject obj = (JSONObject) ob;
+    	  JSONArray arr = (JSONArray) obj.get(str);
+    	  JSONObject objects;
+    	  for(int i = 0; i < arr.size(); i++)
+    	  {
+    		   objects = (JSONObject) arr.get(i); 
+    		  System.out.println(objects.get("name"));
+    		  System.out.println(objects.get("price"));
+    		  System.out.println(objects.get("weight"));
+    		  System.out.println("********************");
+    	  }
+    	  
+    //	 System.out.println(arr);
+//    	  org.json.simple.JSONArray jsonArray = (org.json.simple.JSONArray) parser.parse(reader);
+//    	  System.out.println(jsonArray);
+    	 
+    	 return arr;
+    	  
       } catch (FileNotFoundException e) {
           e.printStackTrace();
       } catch (IOException e) {
@@ -745,25 +792,10 @@ public class Utility {
       } catch (ParseException e) {
           e.printStackTrace();
       }
+	return null;
   }
   
-  private static void parseEmployeeObjectJson(JSONObject food) 
-  {
-      //Get employee object within list
-      JSONObject foodObject = (JSONObject) food.get("Rice");
-       
-      //Get employee first name
-      String name = (String) foodObject.get("name");    
-      System.out.println(name);
-       
-      //Get employee last name
-      String weight = (String) foodObject.get("weight");  
-      System.out.println(weight);
-       
-      //Get employee website name
-      String price = (String) foodObject.get("price_per_kg");    
-      System.out.println(price);
-  }
+
   
   //SLL to String
   public static String sLLtoString(ListNode head) {
