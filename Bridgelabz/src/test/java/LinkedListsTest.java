@@ -1,11 +1,11 @@
 
 
 public class LinkedListsTest {
-    
+  public  ListNode head = null;
 	//private ListNode head; //Head node to hold the list
 	
 	//Given a ListNode, print all elements it holds
-	public void display(ListNode head){
+	public void display(){
 		if(head == null) {
 			return;
 		}
@@ -14,6 +14,7 @@ public class LinkedListsTest {
 		 System.out.print(current.data + " --> ");
 		 current = current.next;
 	 }
+	 System.out.println();
 	}
 	
 	//Returns the length of singlyLinkedList
@@ -32,15 +33,17 @@ public class LinkedListsTest {
 	}
 	
 	//Insearting a Node in SinglyLinkedList at the Beggining
-	public void insertAtBeggining(ListNode head,int x) {
+	public void insertAtBeggining(int x) {
+		ListNode newNode = new ListNode(x);
 		if(head == null) {
+			head = newNode;
 			return;
 		}
-		ListNode newNode = new ListNode(x);
-		newNode.next = head;
+		ListNode temp = head;
+		newNode.next = temp;
 		head = newNode;
-		
-		display(head);
+	//	head.next = temp; 
+		display();
 	}
 	
 	//Insearting a Node in SinglyLinkedList at the End
@@ -55,7 +58,7 @@ public class LinkedListsTest {
 			
 		}
 		current.next = newNode;
-		display(head);
+		display();
 		
 	}
 	//Insearting a Node in SinglyLinkedList after a given node
@@ -68,7 +71,7 @@ public class LinkedListsTest {
 		newNode.next = previous.next;
 		previous.next = newNode;
 		
-		display(previous);
+		//display(previous);
 	}
 	
 	//Insearting a Node in SinglyLinkedList at a given position
@@ -291,29 +294,37 @@ public class LinkedListsTest {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-        ListNode head = new ListNode(10);
-        ListNode second = new ListNode(8);
-        ListNode third = new ListNode(11);
-        ListNode fourth = new ListNode(11);
-        ListNode fifth = new ListNode(15);
-        ListNode sixth = new ListNode(15);
+//        ListNode head = new ListNode(10);
+//        ListNode second = new ListNode(8);
+//        ListNode third = new ListNode(11);
+//        ListNode fourth = new ListNode(11);
+//        ListNode fifth = new ListNode(15);
+//        ListNode sixth = new ListNode(15);
         
 		 //Attach them together to form a list
-        head.next = second; //10 --> 8
-        second.next = third;//8 --> 1
-        third.next = fourth;//1 --> 11
-		fourth.next = fifth;
-		fifth.next = sixth;
+//        head.next = second; //10 --> 8
+//        second.next = third;//8 --> 1
+//        third.next = fourth;//1 --> 11
+//		fourth.next = fifth;
+//		fifth.next = sixth;
         LinkedListsTest linkedListsTest = new LinkedListsTest();
+        linkedListsTest.insertAtBeggining(10);
+        linkedListsTest.insertAtBeggining(12);
+        linkedListsTest.insertAtBeggining(14);
+        linkedListsTest.insertAtBeggining(102);
+        linkedListsTest.insertAtBeggining(16);
+        linkedListsTest.insertAtBeggining(108);
+        linkedListsTest.display();        
+        
       //  linkedListsTest.insertAtBeggining(head, 25);
       //  linkedListsTest.inseartAtEnd(head, 34);
-         linkedListsTest.display(head);
+      //   linkedListsTest.display(head);
       //  linkedListsTest.length(head);
        // ListNode ahead = linkedListsTest.inseartAtGivenPosition(head,14, 1);
        // linkedListsTest.display(ahead);
      //   linkedListsTest.insearAfterGivenNode(head, 90);
        // ListNode last = linkedListsTest.deleteNodeAtPositionInSLL(head, 1);
-        System.out.println();
+      //  System.out.println();
        // System.out.println(last.data);
 //        if(linkedListsTest.searchElement(head, 8)) {
 //        	System.out.println("Search Element Found !!");
@@ -326,8 +337,13 @@ public class LinkedListsTest {
 //        System.out.println(middleNode.data);
 //        ListNode nThnode = linkedListsTest.nThNodeFromEnd(head, 2);
 //        System.out.println(nThnode.data);
-        ListNode removeGiveKeyElement = linkedListsTest.removeGiveKeyElement(head, 11 );
-        linkedListsTest.display(removeGiveKeyElement);
+//        for(int i = 0;i < 5;i++) {
+//        	linkedListsTest.insertAtBeggining(head, i);;
+//        	 linkedListsTest.display(head);
+//        	// System.out.println();
+//        }
+//       
+       
        // System.out.println(duplicates.data);
 	}
 }

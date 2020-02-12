@@ -1,14 +1,14 @@
 package com.bridgelabz.util;
 
-import java.util.EmptyStackException;
+
 
 public class SinglyLinkedListUtility<T extends Comparable> {
-	//private ListNode head; //Head node to hold the list
+	  
 	
-	
-	
+	    AssignValues assn = new AssignValues(null);
+	    ListNode head = assn.getHead(); //Head node to hold the list
 		//Given a ListNode, print all elements it holds
-		public  void display(ListNode head){
+		public  void display(){
 			if(head == null) {
 				return;
 			}
@@ -20,7 +20,7 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 		}
 		
 		//Returns the length of singlyLinkedList
-		public  int length(ListNode head) {
+		public  int length() {
 			if(head == null) {
 				return 0;
 			}
@@ -40,7 +40,7 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 //		}
 		
 		//Insearting a Node in SinglyLinkedList at the Beggining
-		public  ListNode insertAtBeggining(ListNode head,T x) {
+		public  ListNode insertAtBeggining(T x) {
 //			if(head == null) {
 //				return head;
 //			}
@@ -53,7 +53,7 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 		}
 		
 		//Insearting a Node in SinglyLinkedList at the Beggining
-				public  ListNode insertAtBeggining(ListNode head,int x) {
+				public  ListNode insertAtBeggining(int x) {
 //					if(head == null) {
 //						return head;
 //					}
@@ -65,7 +65,7 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 					return head;
 				}
 		//Insearting a Node in SinglyLinkedList at the End
-		public  ListNode inseartAtEnd(ListNode head,T x) {
+		public  ListNode inseartAtEnd(T x) {
 			if(head == null) {
 				return head;
 			}
@@ -82,7 +82,8 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 			return head;
 		}
 		//Insearting a Node in SinglyLinkedList after a given node
-		public  void insearAfterGivenNode(ListNode previous,T x) {
+		public  void insearAfterGivenNode(T x) {
+			ListNode previous = head;
 			if(previous == null) {
 				return;
 			}
@@ -90,13 +91,13 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 			
 			newNode.next = previous.next;
 			previous.next = newNode;
-			
-			display(previous);
+			assn.setHead(newNode);
+			display();
 		}
 		
 		//Insearting a Node in SinglyLinkedList at a given position
-		public  ListNode inseartAtGivenPosition(ListNode head,T data,int p) {
-			int size = length(head);
+		public  ListNode inseartAtGivenPosition(T data,int p) {
+			int size = length();
 			if(p > size + 1 || p < 1) {
 				
 				return head;
@@ -122,7 +123,7 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 		}
 		
 		//Delete firstnode from linklist in java
-		public static ListNode deleteFirstNodeInSingularLinkList(ListNode head) {
+		public  ListNode deleteFirstNodeInSingularLinkList() {
 			
 			if(head == null) {
 				return head;
@@ -134,7 +135,7 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 		}
 		
 		//Deleting last node of s Linked List in java
-		public static ListNode deleteLastNodeFromSLL(ListNode head) {
+		public  ListNode deleteLastNodeFromSLL() {
 			if(head == null) {
 				return head;
 			}
@@ -149,8 +150,8 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 		}
 		
 		//Deleting node from a s Linked List at given Position
-		public  ListNode deleteNodeAtPositionInSLL(ListNode head,int position) {
-			int size = length(head);
+		public  ListNode deleteNodeAtPositionInSLL(int position) {
+			int size = length();
 			if(position > size || position < 1) {
 				return head;
 			}
@@ -175,7 +176,7 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 		}
 		
 	//	Search an Element in a LinkedList
-		public  boolean searchElement(ListNode head,T searchKey) {
+		public  boolean searchElement(T searchKey) {
 			
 			if (head == null) {
 				return false; 
@@ -209,7 +210,7 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 		}
 
 		//Reverse a s Ll 
-		public static ListNode riverseLl(ListNode head) {
+		public  ListNode riverseLl() {
 			if(head == null) {
 				return head;
 			}
@@ -226,7 +227,7 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 		}
 		
 		//Find the middle node in sLL
-		public static ListNode middleNode(ListNode head) {
+		public  ListNode middleNode() {
 			if(head == null) {
 				return head;
 			}
@@ -240,7 +241,7 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 		}
 		
 		//Returns the Nth Node for the End of s LinkedList
-		public static ListNode nThNodeFromEnd(ListNode head,int n) {
+		public  ListNode nThNodeFromEnd(int n) {
 			if(head == null) {
 				return head;
 			}
@@ -266,7 +267,7 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 		}
 		
 		//Removes the duplicates from the sorted LinkList
-		public static ListNode removeDuplicates(ListNode head) {
+		public  ListNode removeDuplicates() {
 			   if(head == null) {
 				   return head;
 			   }
@@ -283,7 +284,7 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 		}
 		
 		//Insert Element into Sorted List
-		public  ListNode insertIntoSortedList(ListNode head,T value) {
+		public  ListNode insertIntoSortedList(T value) {
 			ListNode newNode = new ListNode(value);
 			if(head == null) {
 				return head;
@@ -301,7 +302,7 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 		}
 		
 		//Remove a given Key from Singly Linked List
-		public  ListNode removeGiveKeyElement(ListNode head,T key) {
+		public  ListNode removeGiveKeyElement(T key) {
 //			if(head == null) {
 //				return head;
 //			}
@@ -338,7 +339,7 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 		    for (int i = n - 1; i >= 0 ; i--) {
 		    	//head = null;
 //		    	String s = "shafat";
-		    	head = insertAtBeggining(head,(T) arr[i]); 
+		    	head = insertAtBeggining((T) arr[i]); 
 		    	
 		    }
 		   // System.out.println(head);
@@ -351,7 +352,7 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 		    for (int i = n - 1; i >= 0 ; i--) {
 		    	//head = null;
 //		    	String s = "shafat101";
-		    	head = insertAtBeggining(head, arr[i]); 
+		    	head = insertAtBeggining(arr[i]); 
 		    	
 		    }
 		   // System.out.println(head);
@@ -359,12 +360,7 @@ public class SinglyLinkedListUtility<T extends Comparable> {
 		}
 	
 	
-		
-		public static void main(String[] args) {
-			
-			
-
-		}
+	
 		
 	}
 

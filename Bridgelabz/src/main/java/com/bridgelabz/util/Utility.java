@@ -10,27 +10,22 @@ package com.bridgelabz.util;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
+
 import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-import com.bridgelabz.objectorientedprograms.Food;
+
+
 import com.bridgelabz.util.SinglyLinkedListUtility.ListNode;
 
 public class Utility {
@@ -50,6 +45,21 @@ public class Utility {
 		
 		return s;
 	}
+	//char scanner
+	public static char scannerChar() {
+		Scanner input = new Scanner(System.in);
+		char c = input.next().charAt(0);
+		
+		return c;
+	}
+	//double scanner
+	public static double scannerDouble() {
+		Scanner input = new Scanner(System.in);
+		double c = input.nextDouble();
+		
+		return c;
+	}
+	
 	//scannerArray to take multiple int values
 	public static int[] scannerArray(int len) {
 		
@@ -703,131 +713,7 @@ public class Utility {
       } 
   } 
   
-  //practice
-  public static JSONObject jsonaddd(String name,String weight,double price) {
-	  JSONObject food = new JSONObject();
-	  food.put("name",name);
-	  food.put("weight",weight);
-	  food.put("price",price);
-	  
-	return food;
-  }
-  
-  //Write JSON to file
-  public static JSONObject writeJson(String[] args) {
-	  Food food = new Food();
-	  JSONArray foodList = new JSONArray();
-	  System.out.println("Enter total number of items : ");
-	  String num = Utility.scannerString();
-	  if(Utility.numberOrNot(num)) {
-		  int n = Utility.numberOrNotReturn(num);
-		 
-	  for(int i = 0;i < n;i++) {
-	    	//  food.clear();	  
-	  System.out.println("Enter the name of "+args[0]);
-	  food.setName(Utility.scannerString());
-	  System.out.println("Enter the weight of "+args[0]);
-	  food.setWeight(Utility.scannerString());
-	  System.out.println("Enter the price of "+args[0]);
-	  food.setPrice(Utility.scannerInt());
-	  System.out.println("************************");
-	
-	 foodList.add(Utility.jsonaddd(food.getName(),food.getWeight(),food.getPrice()));
-	  
-	  }
-	  }else {
-		 return null;
-	  }
-	  
-	  JSONObject obj = new JSONObject();
-	  obj.put(args[0], foodList);
-	 
-	 return obj; 
-  }
-  
-  //json creator
-  public static JSONArray createJson(String[] args) {
-	  Food food = new Food();
-	  JSONArray foodList = new JSONArray();
-	  System.out.println("Enter total number of items : ");
-	  String num = Utility.scannerString();
-	  if(Utility.numberOrNot(num)) {
-		  int n = Utility.numberOrNotReturn(num);
-		 
-	  for(int i = 0;i < n;i++) {
-	    	//  food.clear();	  
-	  System.out.println("Enter the name of "+args[0]);
-	  food.setName(Utility.scannerString());
-	  System.out.println("Enter the weight of "+args[0]);
-	  food.setWeight(Utility.scannerString());
-	  System.out.println("Enter the price of "+args[0]);
-	  food.setPrice(Utility.scannerInt());
-	  System.out.println("************************");
-	
-	 foodList.add(Utility.jsonaddd(food.getName(),food.getWeight(),food.getPrice()));
-	  
-	  }
-	  }else {
-		 return null;
-	  }
-	 
-	 return foodList; 
-  }
-  //write it into the file
-  public static void insertIntoFile(String obj ,String str) {
-	  String s = "/home/mobicom/Documents/"+str+".json";
-		//  System.out.println(s);
-		  try (FileWriter file = new FileWriter(s)) {
-			  
-	          file.write(obj);
-	          file.flush();
 
-	      } catch (IOException e) {
-	          e.printStackTrace();
-	      }
-  }
-  
-  //Read JSON file
-  public static JSONArray readJson(String str) {
-	  String s = "/home/mobicom/Documents/"+str+".json";
-   //   System.out.println(s);
-      try (FileReader reader = new FileReader(s))
-      {    
-    	  JSONParser parser = new JSONParser();
-        
-    	  Object ob  = parser.parse(reader);
-    	  JSONObject obj = (JSONObject) ob;
-    	  JSONArray arr = (JSONArray) obj.get(str);
-//    	  JSONObject objects;
-//    	  for(int i = 0; i < arr.size(); i++)
-//    	  {
-//    		   objects = (JSONObject) arr.get(i); 
-//    		  System.out.println(objects.get("name"));
-//    		  System.out.println(objects.get("price"));
-//    		  System.out.println(objects.get("weight"));
-//    		  System.out.println("********************");
-//    	  }
-    	  
-    //	 System.out.println(arr);
-
-    	 
-    	 return arr;
-    	  
-      } catch (FileNotFoundException e) {
-          e.printStackTrace();
-         
-          return null;
-      } catch (IOException e) {
-          e.printStackTrace();
-         
-          return null;
-      } catch (ParseException e) {
-    	  
-          e.printStackTrace();
-          return null;
-      }
-	
-  }
   
   
 

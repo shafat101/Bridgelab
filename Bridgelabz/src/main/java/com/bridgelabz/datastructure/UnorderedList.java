@@ -2,6 +2,7 @@ package com.bridgelabz.datastructure;
 
 import java.io.IOException;
 
+import com.bridgelabz.util.AssignValues;
 import com.bridgelabz.util.SinglyLinkedListUtility;
 import com.bridgelabz.util.SinglyLinkedListUtility.ListNode;
 import com.bridgelabz.util.Utility;
@@ -11,7 +12,7 @@ public class UnorderedList{
 
 	public static void main(String[] args) throws IOException {
 		SinglyLinkedListUtility<Comparable> sll = new SinglyLinkedListUtility<Comparable>();
-		
+		AssignValues assn = new AssignValues(null);
 		String s = Utility.scannerString();
 		ListNode head ;
 		
@@ -23,15 +24,17 @@ public class UnorderedList{
 		 
 		   
 		 //   sll.display(sll.arrayToList(arr, arr.length));
-		 flag =  sll.searchElement(sll.arrayToList(arr, arr.length), s);
+		 assn.setHead(sll.arrayToList(arr, arr.length));
+		 flag =  sll.searchElement(s);
 		
 		  if(flag) {
 			  position = sll.searchElementposition(sll.arrayToList(arr, arr.length), s);
-	        	head = sll.deleteNodeAtPositionInSLL(sll.arrayToList(arr, arr.length), position);
+			  assn.setHead(sll.arrayToList(arr, arr.length));
+	        	head = sll.deleteNodeAtPositionInSLL(position);
 			  
 		  }else {
-			 
-			  head =  sll.inseartAtEnd(sll.arrayToList(arr, arr.length), s);
+			  assn.setHead(sll.arrayToList(arr, arr.length));
+			  head =  sll.inseartAtEnd(s);
 			//  System.out.println("***************************");
 			  
 		  }
