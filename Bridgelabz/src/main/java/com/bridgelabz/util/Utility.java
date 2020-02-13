@@ -35,28 +35,28 @@ public class Utility {
 	public static String scannerString() {
 		Scanner input = new Scanner(System.in);
 		String s = input.next();
-		
+		input.close();
 		return s;
 	}
     //input boolean
 	public static boolean scannerBoolean() {
 		Scanner input = new Scanner(System.in);
 		boolean s = input.hasNext();
-		
+		input.close();
 		return s;
 	}
 	//char scanner
 	public static char scannerChar() {
 		Scanner input = new Scanner(System.in);
 		char c = input.next().charAt(0);
-		
+		input.close();
 		return c;
 	}
 	//double scanner
 	public static double scannerDouble() {
 		Scanner input = new Scanner(System.in);
 		double c = input.nextDouble();
-		
+		input.close();
 		return c;
 	}
 	

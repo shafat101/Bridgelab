@@ -1,4 +1,4 @@
-package com.bridgelabz.java;
+package com.bridgelabz.java.service;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

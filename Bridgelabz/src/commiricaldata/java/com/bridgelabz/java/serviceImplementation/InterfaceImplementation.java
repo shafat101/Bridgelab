@@ -1,4 +1,4 @@
-package com.bridgelabz.java;
+package com.bridgelabz.java.serviceImplementation;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -8,7 +8,11 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import com.bridgelabz.util.Utility;
+import com.bridgelabz.java.Utility.Utility;
+import com.bridgelabz.java.model.AssignValues;
+import com.bridgelabz.java.model.DataAssign;
+import com.bridgelabz.java.service.Interface;
+
 
 public class InterfaceImplementation implements Interface {
       AssignValues assig = new AssignValues();

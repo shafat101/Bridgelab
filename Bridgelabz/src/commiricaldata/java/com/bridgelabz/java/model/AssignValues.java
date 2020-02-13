@@ -1,4 +1,4 @@
-package com.bridgelabz.java;
+package com.bridgelabz.java.model;
 
 public class AssignValues {
 	private String stockNames;
