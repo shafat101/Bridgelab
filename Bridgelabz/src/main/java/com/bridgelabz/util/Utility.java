@@ -136,8 +136,9 @@ public class Utility {
 	//Takes  User input -n-  
 	public static int scannerInt() {
 		Scanner input = new Scanner(System.in);
-		input.hasNext();
-		return input.nextInt();
+		int n = input.nextInt();
+		input.close();
+		return n;
 	}
     //Subtraction of 2 numbers
 	public static double sun2Numbers(double x,double y) {
@@ -343,8 +344,6 @@ public class Utility {
     public static double duelrandomiser() {
     	
     double	randno = Math.random();
-    	
-    	
     	return randno;
     }
     

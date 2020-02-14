@@ -13,6 +13,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import com.bridgelabz.commercialdp.model.CompanyShares;
+import com.bridgelabz.commercialdp.model.UserAccessVAr;
 import com.bridgelabz.java.Utility.Utility;
 import com.bridgelabz.java.model.DataAssign;
 
@@ -56,29 +57,40 @@ public class Utiltiy {
 		input.close();
 		return n;
 	}
-	public static JSONArray toJSON() {
 	
-			 CompanyShares inventory=new CompanyShares();
+	//create account on file
+	public static JSONArray toJSONUserAccount(String name,double cash,int n,int share,String stock) {
+	
+			 UserAccessVAr inventory=new UserAccessVAr();
                 JSONArray arr = new JSONArray();
 				JSONObject jo=new JSONObject();
-				System.out.println("enter Shock symbol");
-				inventory.setStockSymbol(Utility.scannerString());//set Symbol
-				jo.put("symbol",inventory.getStockSymbol());
-				System.out.println("enter Number of Shares");
-				inventory.setNumberOfShares(Utility.scannerInt());
-				jo.put("numberOfShares",inventory.getNumberOfShares());
-				System.out.println("enter Share price");
-				inventory.setSharePrice(Utility.scannerDouble());
-				jo.put("sharePrice",inventory.getSharePrice());
 				
-				inventory.setDateTime(getCurrentDateTime());
-				jo.put("datetime",inventory.getDateTime());
+				inventory.setName(name);
+				jo.put("name",inventory.getName());
+				
+				inventory.setCash(cash);
+				jo.put("cash",inventory.getCash());
+				
+				inventory.setN(n);
+				jo.put("n",inventory.getN());
+				
+				inventory.setShares(share);
+				jo.put("share",inventory.getShares());
+				
+				inventory.setName(name);//set Symbol
+				jo.put("name",inventory.getName());
+				
+				inventory.setStocks(stock);
+				jo.put("stock",inventory.getStocks());
 				
 				JSONObject newobj=new JSONObject();
-				newobj.put("stock",jo);
+				newobj.put("account",jo);
 				arr.add(newobj);
 				return arr;   
 	}
+	
+	//Update json file
+	
 	// Create a file
 	public static boolean createFile(String file) {
 		boolean flag = false;
@@ -112,6 +124,8 @@ public class Utiltiy {
 		      e.printStackTrace();
 		    }
 	  }
+	  
+	//Read File   
 	public static JSONArray readfile(String filename) {
 		// TODO Auto-generated method stub
 		/// home/mobicom/Documents/stock.json
@@ -128,6 +142,8 @@ public class Utiltiy {
 		JSONArray empty = new JSONArray();
 		return empty;
 	}
+	
+	//Get current Date Time
     public static String getCurrentDateTime() {
     	 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
     	   LocalDateTime now = LocalDateTime.now(); 
