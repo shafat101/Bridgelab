@@ -12,6 +12,21 @@ public class Utility {
 			
 			return s;
 		}
+		
+		//return int
+		public static int retint() {
+			Scanner input = new Scanner(System.in);
+			int s = input.nextInt();
+			
+			return s;
+		}
+		//next line 
+		public static String nextLine() {
+			Scanner input = new Scanner(System.in);
+			String s = input.nextLine();
+			
+			return s;
+		}
 	    //input boolean
 		public static boolean scannerBoolean() {
 			Scanner input = new Scanner(System.in);

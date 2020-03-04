@@ -1,6 +1,6 @@
 package com.bridgelabz.oop.utility;
 
-public class SinglyLinkList <T extends Comparable> {
+public class SinglyLinkList <T> {
 	singlyAssignList sal = new singlyAssignList(null);
 	
 	ListNode head = sal.getHead(); //Head node to hold the list

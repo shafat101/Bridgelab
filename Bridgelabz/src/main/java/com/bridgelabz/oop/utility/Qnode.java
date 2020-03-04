@@ -1,4 +1,4 @@
-package com.bridgelabz.util;
+package com.bridgelabz.oop.utility;
 
 
 	 public class Qnode<T> { 

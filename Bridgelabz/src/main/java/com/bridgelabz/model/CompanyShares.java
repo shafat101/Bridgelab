@@ -9,13 +9,13 @@ public class CompanyShares {
    
     
     
-//	public CompanyShares(String stockSymbol, int numberOfShares, String dateTime ,double sharePrice) {
-//		super();
-//		this.stockSymbol = stockSymbol;
-//		this.numberOfShares = numberOfShares;
-//		this.dateTime = dateTime;
-//		this.sharePrice = sharePrice;
-//	}
+	public CompanyShares(String stockSymbol, int numberOfShares, String dateTime ,double sharePrice) {
+		//super();
+		this.stockSymbol = stockSymbol;
+		this.numberOfShares = numberOfShares;
+		this.dateTime = dateTime;
+		this.sharePrice = sharePrice;
+	}
 	public String isStockSymbol() {
 		return stockSymbol;
 	}
@@ -34,11 +34,7 @@ public class CompanyShares {
 	public void setDateTime(String dateTime) {
 		this.dateTime = dateTime;
 	}
-	@Override
-	public String toString() {
-		return "CompanyShares [stockSymbol=" + stockSymbol + ", numberOfShares=" + numberOfShares + ", dateTime="
-				+ dateTime + "]";
-	}
+	
 	public double getSharePrice() {
 		return sharePrice;
 	}
@@ -48,8 +44,14 @@ public class CompanyShares {
 	public String getStockSymbol() {
 		return stockSymbol;
 	}
-    
-    
+	public int getValue() {
+		return (int) (numberOfShares * sharePrice);
+	}
+	@Override
+	public String toString() {
+		return "CompanyShares [stockSymbol=" + stockSymbol + ", numberOfShares=" + numberOfShares + ", dateTime="
+				+ dateTime + "]";
+	}
     
 	
 	
