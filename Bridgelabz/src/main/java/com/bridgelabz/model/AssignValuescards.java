@@ -8,8 +8,10 @@ public class AssignValuescards {
     private Suit suit;
 
 	
-	   public AssignValuescards(Rank rank, Suit suit) { this.rank = rank;
-	   this.suit = suit; }
+ public AssignValuescards(Rank rank, Suit suit) { 
+	   this.rank = rank;
+	   this.suit = suit;
+  }
 	 
 	public Rank getRank() {
 		return rank;

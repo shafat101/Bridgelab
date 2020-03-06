@@ -1,16 +1,16 @@
 package com.bridgelabz.model;
 
 public class CompanyShares {
-    public String stockSymbol;
-    public int numberOfShares;
-    public String dateTime;
-    public double sharePrice;
+    private String stockSymbol;
+    private int numberOfShares;
+    private String dateTime;
+    private int sharePrice;
     
    
     
     
-	public CompanyShares(String stockSymbol, int numberOfShares, String dateTime ,double sharePrice) {
-		//super();
+	public CompanyShares(String stockSymbol, int numberOfShares, String dateTime ,int sharePrice) {
+		super();
 		this.stockSymbol = stockSymbol;
 		this.numberOfShares = numberOfShares;
 		this.dateTime = dateTime;
@@ -35,10 +35,10 @@ public class CompanyShares {
 		this.dateTime = dateTime;
 	}
 	
-	public double getSharePrice() {
+	public int getSharePrice() {
 		return sharePrice;
 	}
-	public void setSharePrice(double sharePrice) {
+	public void setSharePrice(int sharePrice) {
 		this.sharePrice = sharePrice;
 	}
 	public String getStockSymbol() {

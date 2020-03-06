@@ -36,16 +36,17 @@ public class StockAccount implements FuncInterface{
 	    public int cash;           
 	    public int n;   
 	    int totalValue;
-	   
+	    int count = 0;
 	    
+	    int dbCount = 0;
 	    public  StockAccount(String filename) {
 	    	transactionsStack = new StackOperations<String>();
 			transactionsQueue = new Queue<String>();
-			getFiledata();
+			 getFiledata();
 	    }
 	
 	   public void addOrRemoveStock() {
-			System.out.print("Type 'buy' to buy stock or type 'sell' to sell stock: 'save' to save");
+			System.out.print("Type 'buy' to buy stock or type 'sell' to sell stock: 'save' to save P to print");
 			String action = Utility.scannerString();
 			if(action.equals("buy")) {
 				System.out.print("Enter amount, symbol, price of the stock: ");
@@ -65,50 +66,64 @@ public class StockAccount implements FuncInterface{
 				addOrRemoveStock();
 			}
 			else if(action.equals("save")){
+			
+				writeToFile();
+				addOrRemoveStock();
+			}else if(action.equals("P")) {
 				printReport();
 				System.out.println("\nTotal stock value: " + valueOf());
 				printTransactionStack();
 				printTransactionQueue();
-				writeToFile();
-				
 			}
+			
 		}
 	    
-	    private void getFiledata() {
+	    private int getFiledata() {
 			FileReader reader = null;
+			
 			try {
 				reader = new FileReader("/home/mobicom/Desktop/Bridgelabzsolutions/gitin/Bridgelabz/src/main/java/com/bridgelabz/repository/stockaccount.txt");
 				//	buffered reader to read the file
 				BufferedReader bufferedReader = new BufferedReader(reader);
-				name = bufferedReader.readLine();
-				cash = Integer.parseInt(bufferedReader.readLine());
-				n = Integer.parseInt(bufferedReader.readLine());
-				System.out.println("getfiledate value of n"+n);
+//				name = bufferedReader.readLine();
+//				cash = Integer.parseInt(bufferedReader.readLine());
+//				n = Integer.parseInt(bufferedReader.readLine());
+//				//System.out.println("getfiledate value of n"+ n);
+//				String date = bufferedReader.readLine();
 				companyShares = new CompanyShares[10];
-				for (int i = 0; i < n; i++) {
+				for (int i = 0; i < 1000; i++) {
 					String line = bufferedReader.readLine();
+					if(line.equals(null)) {
+						break;
+					}
+				//	System.out.println(line+" Line here");
 					String[] lines = line.split(" ");
 					String symbol = lines[0];
 					int numberOfShares = Integer.parseInt(lines[1]);				
 					int price = Integer.parseInt(lines[2]);
 					String dateTime = lines[3];
 					companyShares[i] = new CompanyShares(symbol, numberOfShares, dateTime, price);
+					dbCount++;
 				}
 				bufferedReader.close();
 			} catch (FileNotFoundException e1) {
 				e1.printStackTrace();
-			} catch (IOException e) {
+			}catch(NullPointerException e) {
+				addOrRemoveStock();
+			}
+			catch (IOException e) {
 				e.printStackTrace();
 			}
+			return dbCount;
 		}
 	    
 	@Override
 	public double valueOf() {
 		// TODO Auto-generated method stub
 		
-		totalValue = (int) cash;
+		
 		for (int i = 0; i < n; i++) {
-			totalValue += companyShares[i].getValue();
+			totalValue = companyShares[i].getValue();
 		}
 		return totalValue;
 	}
@@ -116,7 +131,7 @@ public class StockAccount implements FuncInterface{
 	@Override
 	public void buy(int amount, String symbol,int price) {
 		// TODO Auto-generated method stub
-		int count = 0;
+		
 		String dateTime = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
 		CompanyShares companyShareObject = new CompanyShares(symbol, amount / price, dateTime, price);
 		companyShares[count] = companyShareObject;
@@ -154,15 +169,17 @@ public class StockAccount implements FuncInterface{
 	}
 
 	@Override
-	public double printReport() {
+	public int printReport() {
 		System.out.println("\n" + name + "\n");
 		System.out.println("Symbol\tNo. of Shares\tPrice\tValue\tDate");
-		for (int i = 0; i < n; i++) {
+		
+		
+		for (int i = 0; i < dbCount; i++) {
 			CompanyShares shares = companyShares[i];
 			System.out.println(shares.getStockSymbol() + "\t" + shares.getNumberOfShares() + "\t\t" + shares.getSharePrice()
 					+ "\t" + shares.getValue() + "\t" + shares.getDateTime());
 		}
-		return cash;	
+		return 1;	
 	}
 	
 	 // prints queue
@@ -190,10 +207,11 @@ public class StockAccount implements FuncInterface{
 		try {
 			//
 			PrintWriter writer = new PrintWriter("/home/mobicom/Desktop/Bridgelabzsolutions/gitin/Bridgelabz/src/main/java/com/bridgelabz/repository/stockaccount.txt");
-			writer.write(name + "\n" + cash + "\n" + n + "\n");
-			System.out.println("Inside write : "+n);
-			for (int i = 0; i <= 4; i++) {
-				System.out.println("value of n :"+i);
+		//	writer.write(name + "\n" + cash + "\n" + n + "\n");
+			
+			for (int i = 0; i < 5; i++) {
+				System.out.println("value of n :"+n);
+				//System.out.println("LEngth of companyShares "+companyShares.length);
 				CompanyShares share = companyShares[i];
 				writer.write(share.getStockSymbol() + " " + share.getNumberOfShares()
 						+ " " + share.getSharePrice() + " " + share.getDateTime() + "\n");

@@ -8,7 +8,7 @@ import com.bridgelabz.service.InterfaceCards;
 
 public class InterfaceImplementationCards implements InterfaceCards{
    
-	private List<AssignValuescards> list;
+private List<AssignValuescards> list;
 	
 public InterfaceImplementationCards() {
 		
